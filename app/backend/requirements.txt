@@ -4,6 +4,22 @@
 #
 #    pip-compile requirements.in
 #
+# This file contains the list of Python packages and their versions required for the project.
+# It is generated using pip-compile, which ensures that the specified versions are compatible with each other.
+# The generated requirements.txt file can be used to install the required packages using pip.
+#
+# The packages listed in this file are used by the backend of the Azure Search OpenAI Demo application.
+# These packages include libraries for web development, Azure services, data processing, and more.
+#
+# It is recommended to use a virtual environment to manage the project dependencies and ensure isolation.
+#
+# To install the packages listed in this file, run the following command:
+#
+#    pip install -r requirements.txt
+#
+# Note: Make sure you have Python and pip installed on your system before running the above command.
+
+
 aiofiles==23.2.1
     # via quart
 aiohttp==3.9.3

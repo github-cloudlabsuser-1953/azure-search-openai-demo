@@ -98,7 +98,7 @@ class Approach(ABC):
         auth_helper: AuthenticationHelper,
         query_language: Optional[str],
         query_speller: Optional[str],
-        embedding_deployment: Optional[str],  # Not needed for non-Azure OpenAI or for retrieval_mode="text"
+        embedding_deployment: Optional[str],  # 非Azure OpenAIやretrieval_mode="text"の場合は不要
         embedding_model: str,
         embedding_dimensions: int,
         openai_host: str,
@@ -138,7 +138,7 @@ class Approach(ABC):
         minimum_search_score: Optional[float],
         minimum_reranker_score: Optional[float],
     ) -> List[Document]:
-        # Use semantic ranker if requested and if retrieval mode is text or hybrid (vectors + text)
+        # クエリテキストが指定されていて、検索モードがテキストまたはハイブリッド（ベクトル + テキスト）の場合は、意味的なランカーを使用します。
         if use_semantic_ranker and query_text:
             results = await self.search_client.search(
                 search_text=query_text,
@@ -229,7 +229,7 @@ class Approach(ABC):
             {"dimensions": self.embedding_dimensions} if SUPPORTED_DIMENSIONS_MODEL[self.embedding_model] else {}
         )
         embedding = await self.openai_client.embeddings.create(
-            # Azure OpenAI takes the deployment name as the model name
+            # Azure OpenAIでは、モデル名としてデプロイ名を使用します
             model=self.embedding_deployment if self.embedding_deployment else self.embedding_model,
             input=q,
             **dimensions_args,
